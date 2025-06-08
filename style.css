@@ -1,0 +1,138 @@
+/* Reset & base styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #ffe4ec;
+  overflow: hidden;
+  font-family: 'Segoe UI', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Floating hearts animation */
+.heart {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: #ff6b81;
+  transform: rotate(45deg);
+  animation: floatHearts 10s linear infinite;
+  opacity: 0.7;
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: #ff6b81;
+  border-radius: 50%;
+}
+
+.heart::before {
+  top: -10px;
+  left: 0;
+}
+
+.heart::after {
+  left: -10px;
+  top: 0;
+}
+
+@keyframes floatHearts {
+  0% {
+    transform: translateY(100vh) rotate(45deg);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(-100vh) rotate(45deg);
+    opacity: 0;
+  }
+}
+
+/* Envelope styling */
+.envelope-container {
+  position: relative;
+  width: 200px;
+  height: 130px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.envelope {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  border: 2px solid #d17fa0;
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: #ffc0cb;
+  transform-origin: top;
+  transition: transform 0.6s ease;
+  border-bottom: 2px solid #d17fa0;
+  z-index: 2;
+}
+
+.flap.opened {
+  transform: rotateX(-180deg);
+}
+
+/* Message */
+.message {
+  display: none;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 1.2rem;
+  max-width: 300px;
+  animation: fadeIn 2s ease forwards;
+}
+
+.message.visible {
+  display: block;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.quote {
+  font-style: italic;
+  color: #a64f73;
+  margin-bottom: 10px;
+}
+
+.bday {
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #ff3e66;
+}
+
+@media (max-width: 500px) {
+  .envelope-container {
+    width: 150px;
+    height: 100px;
+  }
+  .message {
+    font-size: 1rem;
+    padding: 0 10px;
+  }
+}
